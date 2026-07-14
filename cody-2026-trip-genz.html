@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>McDonald + Smith Summer Summit 2026 &mdash; Cody, WY (the squad edition)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F3ECD8;
+    --cream-2:#EAE1C8;
+    --navy:#1B3A5C;
+    --navy-2:#14304C;
+    --rust:#2E5339;
+    --rust-2:#1B3524;
+    --sage:#6B8F5E;
+    --ink:#2A2A28;
+    --ink-soft:#5b5952;
+    --line: rgba(27,58,92,0.18);
+    --card:#FFFDF6;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    color:var(--navy);
+    font-weight:600;
+    margin:0 0 0.3em;
+  }
+  a{color:var(--rust);}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
+
+  /* HERO */
+  .hero{
+    background:var(--navy);
+    color:var(--cream);
+    padding:56px 0 40px;
+    text-align:center;
+    border-bottom:6px solid var(--rust);
+  }
+  .hero .badge{width:150px;height:150px;margin:0 auto 18px;display:block;}
+  .hero h1{color:var(--cream);font-size:clamp(28px,5vw,44px);letter-spacing:0.5px;}
+  .hero .sub{color:#E4D9B8;font-family:'Inter';font-weight:500;letter-spacing:3px;text-transform:uppercase;font-size:13px;margin-bottom:6px;}
+  .hero .dates{color:#C7B98C;font-size:15px;margin-top:10px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:20;
+    background:var(--cream);
+    border-bottom:1px solid var(--line);
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+  nav .navwrap{max-width:960px;margin:0 auto;padding:0 24px;display:flex;gap:4px;}
+  nav a{
+    display:inline-block;padding:14px 12px;
+    font-size:13px;font-weight:600;letter-spacing:0.3px;
+    color:var(--navy);text-decoration:none;
+    border-bottom:3px solid transparent;
+    text-transform:uppercase;
+  }
+  nav a:hover{border-bottom-color:var(--rust);color:var(--rust);}
+
+  section{padding:44px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .eyebrow{
+    font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+    color:var(--rust);margin-bottom:8px;
+  }
+  p{color:var(--ink-soft);}
+
+  /* PREP GRID */
+  .prep-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px;}
+  .prep-card{
+    background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;
+  }
+  .prep-card h3{font-size:16px;margin-bottom:8px;}
+  .prep-card p{font-size:14px;margin:0;}
+
+  /* DAY CARDS */
+  .day{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:26px 26px 22px;
+    margin-bottom:26px;
+    position:relative;
+  }
+  .day-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px;}
+  .day-num{
+    background:var(--navy);color:var(--cream);
+    font-family:'Fraunces',serif;font-weight:700;font-size:14px;
+    padding:5px 12px;border-radius:20px;
+  }
+  .day-date{font-size:13px;color:var(--ink-soft);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
+  .day h2{font-size:22px;margin-bottom:14px;}
+  .agenda{list-style:none;margin:0 0 14px;padding:0;}
+  .agenda li{
+    display:grid;grid-template-columns:78px 1fr;gap:14px;
+    padding:10px 0;border-top:1px dashed var(--line);
+    font-size:14.5px;
+  }
+  .agenda li:first-child{border-top:none;}
+  .agenda time{color:var(--rust);font-weight:700;font-size:13px;}
+  .agenda .place-link{font-weight:600;color:var(--navy);text-decoration:none;}
+  .agenda .place-link:hover{color:var(--rust);}
+  .photo-tip{
+    background:var(--cream-2);border-left:3px solid var(--sage);
+    padding:10px 14px;border-radius:0 8px 8px 0;font-size:13.5px;color:var(--ink);margin-top:10px;
+  }
+  .photo-tip b{color:var(--sage);}
+  .notes{
+    margin-top:14px;padding:12px 14px;border:1px dashed var(--line);border-radius:8px;
+    font-size:13.5px;color:var(--ink-soft);min-height:44px;background:#fffef9;
+  }
+  .notes:focus{outline:2px solid var(--rust);outline-offset:2px;color:var(--ink);}
+  .notes[data-empty="true"]:not(:focus)::before{content:attr(data-placeholder);color:#a29e8f;}
+
+  /* DIRECTORY TABLE */
+  .directory{width:100%;border-collapse:collapse;margin-top:18px;font-size:14px;}
+  .directory th{
+    text-align:left;font-family:'Fraunces',serif;color:var(--navy);
+    font-size:13px;text-transform:uppercase;letter-spacing:0.5px;
+    padding:10px 12px;border-bottom:2px solid var(--navy);
+  }
+  .directory td{padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  .directory tr:hover td{background:var(--cream-2);}
+  .place-name{font-weight:600;color:var(--navy);}
+  .place-addr{color:var(--ink-soft);font-size:13px;}
+  .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:12.5px;font-weight:600;text-decoration:none;
+    padding:6px 11px;border-radius:20px;border:1px solid var(--navy);
+    color:var(--navy);white-space:nowrap;
+  }
+  .btn:hover{background:var(--navy);color:var(--cream);}
+  .btn.rust{border-color:var(--rust);color:var(--rust);}
+  .btn.rust:hover{background:var(--rust);color:var(--cream);}
+
+  /* CHECKLIST */
+  .checklist{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:6px 20px;}
+  .checklist li{display:flex;align-items:flex-start;gap:9px;font-size:14.5px;padding:5px 0;}
+  .checklist input{margin-top:4px;accent-color:var(--rust);width:16px;height:16px;flex-shrink:0;}
+
+  .source-list{list-style:none;padding:0;margin:20px 0 0;}
+  .source-list li{
+    padding:14px 16px;margin-bottom:10px;
+    background:var(--card);border:1px solid var(--line);border-left:3px solid var(--rust);
+    border-radius:0 8px 8px 0;font-size:14.5px;
+  }
+  .source-list a{font-weight:600;color:var(--navy);text-decoration:none;}
+  .source-list a:hover{color:var(--rust);}
+  .source-list .src{color:var(--ink-soft);font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;margin-right:6px;}
+  .source-list .desc{display:block;margin-top:4px;color:var(--ink-soft);font-size:13.5px;}
+  .callout{
+    margin-top:18px;padding:14px 18px;background:var(--cream-2);border-radius:10px;
+    font-size:14px;color:var(--ink);
+  }
+
+  .history-card{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:20px 22px;margin-bottom:16px;
+  }
+  .history-card h3{font-size:17px;margin-bottom:8px;}
+  .history-card p{font-size:14.5px;margin:0;color:var(--ink-soft);}
+  .read-time{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--sage);margin-bottom:6px;}
+
+  footer{
+    background:var(--navy);color:#C7B98C;text-align:center;
+    padding:28px 24px;font-size:13px;
+  }
+  footer a{color:var(--cream);}
+
+  @media (max-width:600px){
+    .agenda li{grid-template-columns:60px 1fr;font-size:13.5px;}
+    .day{padding:20px 18px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="sub">Squad since 2005</div>
+  <h1>McDonald + Smith Summer Summit 2026</h1>
+  <div class="dates">Cody, Wyoming &nbsp;&middot;&nbsp; July 20&ndash;24, 2026</div>
+</div>
+
+<nav>
+  <div class="navwrap">
+    <a href="#prep">The 411</a>
+    <a href="#checklist">Pack List</a>
+    <a href="#provisions">Snack Run</a>
+    <a href="#history">The Lore</a>
+    <a href="#day1">Mon 20</a>
+    <a href="#day2">Tue 21</a>
+    <a href="#day3">Wed 22</a>
+    <a href="#day4">Thu 23</a>
+    <a href="#day5">Fri 24</a>
+    <a href="#avoid">Don&#39;t Be That Guy</a>
+    <a href="#thrift">Thrift Run</a>
+    <a href="#golf">Golf Sesh</a>
+    <a href="#directory">The List</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<section id="prep">
+  <div class="eyebrow">heads up bestie</div>
+  <h2>Before you go</h2>
+  <div class="prep-grid">
+    <div class="prep-card">
+      <h3>Rodeo tickets</h3>
+      <p>Get tickets online at <a href="https://www.codystampederodeo.com/p/tickets" target="_blank" rel="noopener">codystampederodeo.com</a> so you're not stuck in the will-call line. The Trifecta combo (dinner + rodeo) is lowkey the move.</p>
+    </div>
+    <div class="prep-card">
+      <h3>Buffalo Bill Center pass</h3>
+      <p>Your ticket's good for two days, so don't stress trying to see it all at once. Come back for round two if a wing hits different.</p>
+    </div>
+    <div class="prep-card">
+      <h3>Beat the entrance line</h3>
+      <p>The East Entrance gets packed 8:30&ndash;10am in July, no cap. Leave Cody by 7am on park days or you're sitting in traffic instead of seeing geysers.</p>
+    </div>
+    <div class="prep-card">
+      <h3>Fuel &amp; provisions</h3>
+      <p>Fill up the tank in Cody before every Yellowstone run. Gas stations inside the park are rare and hit your wallet harder.</p>
+    </div>
+    <div class="prep-card">
+      <h3>Layers</h3>
+      <p>Mornings can be a chilly 40&ndash;50&deg;F even in July, then it's 80s by afternoon. Layers are non-negotiable. Bring the sun hat too.</p>
+    </div>
+    <div class="prep-card">
+      <h3>Offline maps</h3>
+      <p>Service inside Yellowstone is basically nonexistent, so download offline maps before you go or you're navigating by vibes.</p>
+    </div>
+  </div>
+</section>
+<section id="checklist">
+  <div class="eyebrow">the essentials, no cap</div>
+  <h2>Packing list</h2>
+  <p>Check stuff off as you pack. Heads up: it resets if you reload the page, so this is a vibe check, not permanent storage.</p>
+  <ul class="checklist">
+    <li><label><input type="checkbox"> Layers &mdash; a light jacket alongside warm-weather attire, for 40&deg;F mornings through 80&deg;F afternoons</label></li>
+    <li><label><input type="checkbox"> Sturdy walking shoes</label></li>
+    <li><label><input type="checkbox"> Sun hats + sunscreen</label></li>
+    <li><label><input type="checkbox"> Refillable water bottles</label></li>
+    <li><label><input type="checkbox"> Cowboy hats for rodeo evening</label></li>
+    <li><label><input type="checkbox"> Swimwear/quick-dry attire for the river float</label></li>
+    <li><label><input type="checkbox"> Offline Yellowstone map downloaded</label></li>
+    <li><label><input type="checkbox"> Rodeo tickets secured/printed</label></li>
+    <li><label><input type="checkbox"> Camera or phone storage cleared for the journey ahead</label></li>
+    <li><label><input type="checkbox"> Provisions for park days</label></li>
+    <li><label><input type="checkbox"> Bear spray (for excursions beyond the boardwalks)</label></li>
+    <li><label><input type="checkbox"> Cash for small vendors and gratuities</label></li>
+  </ul>
+</section>
+<section id="provisions">
+  <div class="eyebrow">snack run</div>
+  <h2>Provisions</h2>
+  <p>Quick grocery + drink run for when you land. Stock the fridge, grab something good for the evenings.</p>
+  <table class="directory">
+    <thead><tr><th>Store</th><th>Hours</th><th>Links</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><div class="place-name">Albertsons</div><div class="place-addr">1825 17th St, Cody, WY 82414 &mdash; full-service grocery</div></td>
+        <td class="place-addr">Daily 6am&ndash;11pm</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Albertsons%2C+1825+17th+St%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">Walmart Supercenter</div><div class="place-addr">321 Yellowstone Ave, Cody, WY 82414 &mdash; groceries &amp; general goods</div></td>
+        <td class="place-addr">Daily 6am&ndash;11pm</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Walmart+Supercenter%2C+321+Yellowstone+Ave%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">Down Home Discount Cody</div><div class="place-addr">2621 Big Horn Ave, Cody, WY 82414 &mdash; discount &amp; overstock groceries</div></td>
+        <td class="place-addr">Mon&ndash;Fri 9am&ndash;6pm<br>Sat 9am&ndash;5pm<br>Sun closed</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Down+Home+Discount+Cody%2C+2621+Big+Horn+Ave%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">Libations</div><div class="place-addr">1503 Sheridan Ave, Cody, WY 82414 &mdash; wine, spirits &amp; a drive-thru</div></td>
+        <td class="place-addr">Daily 9am&ndash;11pm</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Libations%2C+1503+Sheridan+Ave%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">Grape &amp; Grain Market and Lounge</div><div class="place-addr">1820 17th St, Cody, WY 82414 &mdash; curated wine &amp; spirits market</div></td>
+        <td class="place-addr">Mon&ndash;Tue 8am&ndash;10pm<br>Wed&ndash;Sat 8am&ndash;12am<br>Sun 9am&ndash;10pm</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Grape+%26+Grain+Market+and+Lounge%2C+1820+17th+St%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">Albertsons Liquor</div><div class="place-addr">1801 17th St, Cody, WY 82414</div></td>
+        <td class="place-addr">Mon&ndash;Sat 9am&ndash;9pm<br>Sun 10am&ndash;7pm</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Albertsons+Liquor%2C+1801+17th+St%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section id="history">
+  <div class="eyebrow">the lore</div>
+  <h2>Historical notes</h2>
+  <p>Quick reads, 30&ndash;60 sec each. Actually interesting, promise.</p>
+
+  <div class="history-card">
+    <div class="read-time">~45 sec read</div>
+    <h3>Yellowstone National Park</h3>
+    <p>Established in 1872, Yellowstone was the first national park in the world, spanning roughly 2.2 million acres across Wyoming, Montana, and Idaho. The park sits atop one of the planet's largest active volcanic systems &mdash; a caldera formed by a massive eruption around 640,000 years ago &mdash; which is why it holds more than half the world's active geysers, along with hot springs, mudpots, and fumaroles. Its landscape ranges from high alpine plateaus to deep river canyons, all shaped by that ongoing geothermal activity.</p>
+  </div>
+
+  <div class="history-card">
+    <div class="read-time">~35 sec read</div>
+    <h3>Indigenous peoples of the region</h3>
+    <p>Native peoples used the Yellowstone area for more than 10,000 years before it became a park. The Tukudika, or Sheepeater Shoshone, lived there year-round, while the Crow, Blackfeet, Bannock, Nez Perce, Cheyenne, and several other tribes hunted, gathered, and passed through seasonally. In 1877, the Nez Perce fled through the park during their attempt to escape the U.S. Army. Today, 27 tribes maintain documented historical ties to Yellowstone.</p>
+  </div>
+
+  <div class="history-card">
+    <div class="read-time">~50 sec read</div>
+    <h3>Native wildlife &mdash; bison, wolves, and bears</h3>
+    <p>Bison once numbered in the tens of millions across North America; by 1902, poaching had reduced Yellowstone's herd to about 25 animals, and a dedicated recovery program brought them back &mdash; Yellowstone now holds the country's only continuously wild bison population. Gray wolves were hunted to extinction inside the park by 1926 under government predator-control policy, then reintroduced in 1995 with 31 wolves from Canada, a move that reshaped the park's entire ecosystem. Grizzly bears were listed as a threatened species in 1975 when only around 136 remained in the Greater Yellowstone Ecosystem; that population has since grown to more than 700.</p>
+  </div>
+
+  <div class="history-card">
+    <div class="read-time">~40 sec read</div>
+    <h3>Cody, Wyoming</h3>
+    <p>Founded in 1896 by William F. "Buffalo Bill" Cody and business partners, the town grew quickly after the railroad arrived in 1901. Buffalo Bill championed an irrigation project that led to the Buffalo Bill Dam, completed in 1910 as the tallest dam in the world at the time. Cody built its identity around Wild West showmanship and ranching, earning the nickname "Rodeo Capital of the World" &mdash; the Cody Nite Rodeo has run nightly every summer since 1938. Sitting just 50 miles from Yellowstone's East Entrance, the town has long served as a gateway to the park.</p>
+  </div>
+
+  <div class="history-card">
+    <div class="read-time">~50 sec read</div>
+    <h3>The state of Wyoming</h3>
+    <p>Organized as a territory in 1868 and admitted as the 44th state in 1890, Wyoming is nicknamed the "Equality State" because its territorial government granted women the right to vote in 1869 &mdash; the first government in the world to do so without restriction &mdash; and in 1924 it elected Nellie Tayloe Ross as the first female governor in U.S. history. Geographically, the state spans the high plains of the east and the Rocky Mountains to the west, split by the Continental Divide, and is home to both Yellowstone and Grand Teton National Parks. The Eastern Shoshone and Northern Arapaho share the Wind River Reservation, established by treaty in 1868, while the Crow, Cheyenne, Sioux, and Blackfeet historically ranged across the same high plains. Wyoming remains the least populated U.S. state, with an economy still rooted in energy, ranching, and tourism.</p>
+  </div>
+</section>
+<section id="day1">
+  <div class="day">
+    <div class="day-head"><span class="day-num">Day 1</span><span class="day-date">Monday, July 20</span></div>
+    <h2>Touchdown in Cody</h2>
+    <ul class="agenda">
+      <li><time>Afternoon</time><div>Land, get settled, hit the store for snacks and essentials.</div></li>
+      <li><time>2:30&ndash;6pm</time><div><a class="place-link" href="#buffalo-bill-center">Buffalo Bill Center of the West</a> &mdash; five museums, one building, way too much for one sitting. Use that two-day pass.</div></li>
+      <li><time>6:00pm</time><div><a class="place-link" href="#irma-hotel">Irma Hotel gunfight reenactment</a> &mdash; free street show, most summer nights. Certified great way to kick off the trip.</div></li>
+      <li><time>Evening</time><div>Dinner downtown, then a chill walk down Sheridan Ave past the statues and the glowing storefronts. Very cinematic.</div></li>
+    </ul>
+    <div class="photo-tip"><b>Photo op:</b> the Irma gunfight crowd shot, and a pic under the Cody entrance arch for the group chat.</div>
+    <div class="notes" contenteditable="true" data-placeholder="Click to add notes for Day 1 (flight times, grocery list, etc.)&hellip;" data-empty="true"></div>
+  </div>
+</section>
+<section id="day2">
+  <div class="day">
+    <div class="day-head"><span class="day-num">Day 2</span><span class="day-date">Tuesday, July 21</span></div>
+    <h2>Yellowstone pt. 1 + rodeo night</h2>
+    <ul class="agenda">
+      <li><time>7:00am</time><div>Head out through the <a class="place-link" href="#east-entrance">East Entrance</a> (~1 hr, gorgeous drive through Wapiti Valley and over Sylvan Pass &mdash; bighorn sheep sightings possible, camera ready).</div></li>
+      <li><time>Morning</time><div><a class="place-link" href="#yellowstone-lake">Yellowstone Lake / West Thumb Geyser Basin</a> &mdash; geysers right on the water, easy boardwalk, everyone can do this one.</div></li>
+      <li><time>Midday</time><div>If there's time, swing by <a class="place-link" href="#old-faithful">Old Faithful</a>. If not, no stress &mdash; Day 3 has you covered.</div></li>
+      <li><time>2:30pm</time><div>Start heading back.</div></li>
+      <li><time>6:00pm</time><div>Dinner in Cody.</div></li>
+      <li><time>8:00pm</time><div><a class="place-link" href="#cody-rodeo">Cody Nite Rodeo</a> &mdash; real PRCA rodeo, every night, plus a calf scramble for the little ones. 4.7&#9733; from 2,200+ reviews, so it's not just hype.</div></li>
+    </ul>
+    <div class="photo-tip"><b>Photo op:</b> rodeo shots from the rail, everyone in cowboy hats (mandatory), and the West Thumb boardwalk shot if you make it &mdash; it's giving postcard.</div>
+    <div class="notes" contenteditable="true" data-placeholder="Click to add notes for Day 2&hellip;" data-empty="true"></div>
+  </div>
+</section>
+<section id="day3">
+  <div class="day">
+    <div class="day-head"><span class="day-num">Day 3</span><span class="day-date">Wednesday, July 22</span></div>
+    <h2>Yellowstone pt. 2 &mdash; the icons</h2>
+    <ul class="agenda">
+      <li><time>6:30am</time><div>Earliest wake-up of the trip. Worth it, promise.</div></li>
+      <li><time>~9:00am</time><div><a class="place-link" href="#old-faithful">Old Faithful</a> &mdash; check the eruption time when you get there and plan around it, don't just wing it.</div></li>
+      <li><time>~11:00am</time><div><a class="place-link" href="#grand-prismatic">Grand Prismatic Spring</a> &mdash; the overhead shot everyone's seen online. Short uphill walk from the Fairy Falls trailhead, fully worth it.</div></li>
+      <li><time>Lunch</time><div>Picnic or grab food at the Snow Lodge.</div></li>
+      <li><time>Afternoon</time><div><a class="place-link" href="#artist-point">Grand Canyon of the Yellowstone / Artist Point</a> &mdash; massive waterfall, easy paved path, zero excuses to skip it.</div></li>
+      <li><time>Evening</time><div>Drive back to Cody, chill dinner, early bedtime. You earned it.</div></li>
+    </ul>
+    <div class="photo-tip"><b>Photo op:</b> Grand Prismatic Overlook (wear something bright, it pops), Old Faithful going off, and the Artist Point backdrop. Core memory content.</div>
+    <div class="notes" contenteditable="true" data-placeholder="Click to add notes for Day 3&hellip;" data-empty="true"></div>
+  </div>
+</section>
+<section id="day4">
+  <div class="day">
+    <div class="day-head"><span class="day-num">Day 4</span><span class="day-date">Thursday, July 23</span></div>
+    <h2>Cody, up close (fr)</h2>
+    <ul class="agenda">
+      <li><time>Morning</time><div><a class="place-link" href="#old-trail-town">Old Trail Town</a> &mdash; actual 1800s buildings with wild outlaw history. 4.7&#9733;, lowkey underrated.</div></li>
+      <li><time>Late am</time><div><a class="place-link" href="#buffalo-bill-dam">Buffalo Bill Dam &amp; Visitor Center</a> &mdash; free, and the canyon view is unreal.</div></li>
+      <li><time>Early pm</time><div><a class="place-link" href="#heart-mountain">Heart Mountain Interpretive Center</a> &mdash; heavy but important history on the WWII incarceration camp that stood here. 4.8&#9733;, worth the 25 min drive.</div></li>
+      <li><time>Afternoon</time><div><a class="place-link" href="#river-trips">Shoshone River float</a> &mdash; chill float, works for everyone, no whitewater chaos.</div></li>
+      <li><time>Evening</time><div><a class="place-link" href="#cattle-company">The Cody Cattle Company</a> &mdash; chuckwagon buffet + live music. 4.8&#9733;, bring your appetite.</div></li>
+    </ul>
+    <div class="photo-tip"><b>Photo op:</b> floating the Shoshone with mountains behind you, the old cabins at Trail Town, and the dam overlook. All certified aesthetic.</div>
+    <div class="notes" contenteditable="true" data-placeholder="Click to add notes for Day 4&hellip;" data-empty="true"></div>
+  </div>
+</section>
+<section id="day5">
+  <div class="day">
+    <div class="day-head"><span class="day-num">Day 5</span><span class="day-date">Friday, July 24</span></div>
+    <h2>Last morning, then out</h2>
+    <ul class="agenda">
+      <li><time>Morning</time><div>Pack up, no rush. If there's time, one more lap through downtown Cody &mdash; check if the Farmers Market lines up with your dates (weekly, seasonal, Sheridan Ave).</div></li>
+      <li><time>Optional</time><div>Want one more park run? Sylvan Pass + Yellowstone Lake is a shorter loop (~2.5 hrs round trip), easy to fit in before you go.</div></li>
+      <li><time>Before you depart</time><div>Group pic at the buffalo statues or the Cody welcome sign. Non-negotiable.</div></li>
+      <li><time>Departure</time><div>Safe travels &mdash; see you at the next one.</div></li>
+    </ul>
+    <div class="notes" contenteditable="true" data-placeholder="Click to add notes for Day 5&hellip;" data-empty="true"></div>
+  </div>
+</section>
+<section id="avoid">
+  <div class="eyebrow">don't be that tourist</div>
+  <h2>Don&#39;t be that guy</h2>
+  <p>Yellowstone is actually wild, like, actually. These aren't made-up warnings. Quick read for the whole group before you go, especially the younger crew.</p>
+  <ul class="source-list">
+    <li><span class="src">NPS &middot; May 2025</span><a href="https://www.nps.gov/yell/learn/news/25002.htm" target="_blank" rel="noopener">Man gored by bison in Yellowstone</a><span class="desc">A visitor approached a bison too closely in the Lake Village area and was gored.</span></li>
+    <li><span class="src">Fox News</span><a href="https://www.foxnews.com/us/yellowstone-tourist-gored-bison-after-group-visitors-approached-too-closely" target="_blank" rel="noopener">Yellowstone tourist gored by bison after group of visitors approached it too closely</a><span class="desc">Goring near Old Faithful's Upper Geyser Basin.</span></li>
+    <li><span class="src">NPS</span><a href="https://www.nps.gov/yell/learn/news/25006.htm" target="_blank" rel="noopener">Man gored by bison June 10 in Yellowstone National Park</a><span class="desc">A large group crowded a bison at Old Faithful before it charged.</span></li>
+    <li><span class="src">NPS &middot; 2026</span><a href="https://www.nps.gov/yell/learn/news/26008.htm" target="_blank" rel="noopener">Update: Yellowstone lifts closures near Old Faithful following bear incident</a><span class="desc">Two hikers were injured by bears on the Mystic Falls Trail.</span></li>
+    <li><span class="src">Cowboy State Daily</span><a href="https://cowboystatedaily.com/2026/05/08/day-after-grizzly-attack-dimwitted-tourist-takes-video-of-bear-from-5-feet-away/" target="_blank" rel="noopener">Day After Grizzly Attack, Tourist Takes Video Of Bear From 5 Feet Away</a><span class="desc">A crowd ignored the required 100-yard distance from bears the day after a mauling nearby.</span></li>
+    <li><span class="src">ABC News</span><a href="https://abcnews.com/US/2-hikers-injured-bear-attack-yellowstone-national-park/story?id=132674544" target="_blank" rel="noopener">2 hikers injured in bear attack at Yellowstone National Park</a><span class="desc">Coverage of the Mystic Falls Trail bear attack and resulting closures.</span></li>
+    <li><span class="src">Wikipedia</span><a href="https://en.wikipedia.org/wiki/Death_of_Colin_Scott" target="_blank" rel="noopener">Death of Colin Scott</a><span class="desc">A 2016 fatality after leaving the boardwalk at Norris Geyser Basin to reach a hot spring.</span></li>
+    <li><span class="src">Men's Journal</span><a href="https://www.mensjournal.com/travel/yellowstone-tourist-slammed-for-incredibly-dangerous-decision-at-thermal-pool" target="_blank" rel="noopener">Yellowstone Tourist Slammed for Incredibly Dangerous Decision at Thermal Pool</a><span class="desc">A visitor was filmed drinking water directly from a thermal pool.</span></li>
+    <li><span class="src">NPS</span><a href="https://www.nps.gov/yell/learn/news/211005.htm" target="_blank" rel="noopener">Female visitor suffers significant thermal burns in Yellowstone National Park</a><span class="desc">Burns sustained entering a hot spring while trying to rescue a dog.</span></li>
+    <li><span class="src">USGS</span><a href="https://www.usgs.gov/observatories/yvo/news/which-more-hazardous-yellowstone-visitors-wildlife-or-hot-springs" target="_blank" rel="noopener">Which is more hazardous to Yellowstone visitors, wildlife or hot springs?</a><span class="desc">A park-wide look at how thermal features cause more injuries and deaths than animals do.</span></li>
+  </ul>
+  <div class="callout"><b>The rules that would've saved every single person in these stories:</b> 25 yards from bison, elk, and other big animals. 100 yards from bears and wolves. Stay on the boardwalk near hot springs. Never get close to an animal for a pic &mdash; and don't let one get close to you either.</div>
+</section>
+<section id="thrift">
+  <div class="eyebrow">thrift finds</div>
+  <h2>Thrift run</h2>
+  <p>Cody's thrift scene is actually kind of a hidden gem &mdash; vintage western wear, boots, furniture, all of it. Worth a detour on Day 4 or 5 if anyone's into it.</p>
+  <table class="directory">
+    <thead><tr><th>Store</th><th>Hours</th><th>Links</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><div class="place-name">Deja Vu Thrift Store</div><div class="place-addr">3534 Big Horn Ave, Cody, WY 82414</div></td>
+        <td class="place-addr">Mon&ndash;Fri 10am&ndash;5pm<br>Sat 10am&ndash;3pm<br>Sun closed</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Deja+Vu+Thrift+Store%2C+3534+Big+Horn+Ave%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">Thrift on 16th</div><div class="place-addr">621 16th St, Cody, WY 82414</div></td>
+        <td class="place-addr">Mon&ndash;Sat 10:30am&ndash;5pm<br>Sun 12&ndash;4pm</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Thrift+on+16th%2C+621+16th+St%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">2nd Hand Rose</div><div class="place-addr">1819 17th St, Cody, WY 82414</div></td>
+        <td class="place-addr">Mon&ndash;Fri 10am&ndash;5pm<br>Sat 10am&ndash;3pm<br>Sun closed</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=2nd+Hand+Rose%2C+1819+17th+St%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">Bargain Box Clothing Store</div><div class="place-addr">1231 13th St, Cody, WY 82414</div></td>
+        <td class="place-addr">Mon closed<br>Tue&ndash;Sat 10am&ndash;5pm<br>Sun closed</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bargain+Box+Clothing+Store%2C+1231+13th+St%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">Bargain Box Furniture Store</div><div class="place-addr">1537 Beck Ave, Cody, WY 82414</div></td>
+        <td class="place-addr">Mon closed<br>Tue&ndash;Sat 10am&ndash;5pm<br>Sun closed</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bargain+Box+Furniture+Store%2C+1537+Beck+Ave%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">TheArchive (vintage clothing)</div><div class="place-addr">1302 &frac12; Sheridan Ave, Cody, WY 82414</div></td>
+        <td class="place-addr">Mon closed<br>Tue&ndash;Sat 10am&ndash;6pm<br>Sun closed</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=TheArchive%2C+1302+1%2F2+Sheridan+Ave%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">Cody Uniques (thrift &amp; flea market)</div><div class="place-addr">2631 WY-120, Cody, WY 82414</div></td>
+        <td class="place-addr">Mon&ndash;Fri 9am&ndash;4pm<br>Sat 9am&ndash;2pm<br>Sun 9am&ndash;12pm</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Cody+Uniques%2C+2631+WY-120%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">Senior Center Thrift Barn</div><div class="place-addr">613 16th St, Cody, WY 82414</div></td>
+        <td class="place-addr">Mon&ndash;Thu 9am&ndash;4pm<br>Fri 9am&ndash;2pm<br>Sat&ndash;Sun closed</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Senior+Center+Thrift+Barn%2C+613+16th+St%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section id="golf">
+  <div class="eyebrow">golf gang</div>
+  <h2>Golf sesh</h2>
+  <p>Early tee time on the last morning &mdash; a real course out by the Big Horn Basin, or something more chill right in town.</p>
+  <table class="directory">
+    <thead><tr><th>Course</th><th>Hours</th><th>Links</th></tr></thead>
+    <tbody>
+      <tr id="olive-glenn">
+        <td><div class="place-name">Olive Glenn Golf Club</div><div class="place-addr">802 Meadow Ln Ave, Cody, WY 82414 &mdash; 18-hole, par-72 championship course, in Cody proper</div></td>
+        <td class="place-addr">Mon 7:30am&ndash;7:30pm<br>Tue&ndash;Sun 6:30am&ndash;7:30pm</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Olive+Glenn+Golf+Club%2C+802+Meadow+Ln+Ave%2C+Cody%2C+WY+82414">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://www.oliveglenngolfclub.com/">Website</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">Powell Golf Club</div><div class="place-addr">600 WY-114, Powell, WY 82435 &mdash; 18-hole, par-72 course, two distinct nines; about 30 min from Cody</div></td>
+        <td class="place-addr">Daily 8am&ndash;5pm</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Powell+Golf+Club%2C+600+WY-114%2C+Powell%2C+WY+82435">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://www.powellgolfclub.org/">Website</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">City Park Mini Golf</div><div class="place-addr">902 Sheridan Ave, Cody, WY 82414 &mdash; a lighter, family-friendly round in downtown Cody</div></td>
+        <td class="place-addr">Daily 11am&ndash;9pm (summer season)</td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=City+Park+Mini+Golf%2C+902+Sheridan+Ave%2C+Cody%2C+WY+82414">Directions</a>
+        </div></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section id="directory">
+  <div class="eyebrow">the full list</div>
+  <h2>The full list</h2>
+  <p>Every spot from the itinerary, all in one place &mdash; address, directions, website. Bookmark this.</p>
+  <table class="directory">
+    <thead><tr><th>Place</th><th>Links</th></tr></thead>
+    <tbody>
+      <tr id="buffalo-bill-center">
+        <td><div class="place-name">Buffalo Bill Center of the West</div><div class="place-addr">720 Sheridan Ave, Cody, WY 82414</div></td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Buffalo+Bill+Center+of+the+West%2C+720+Sheridan+Ave%2C+Cody%2C+WY+82414">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://centerofthewest.org/">Website</a>
+        </div></td>
+      </tr>
+      <tr id="cody-rodeo">
+        <td><div class="place-name">Cody Nite Rodeo (Cody Stampede Park)</div><div class="place-addr">519 W Yellowstone Ave, Cody, WY 82414</div></td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Cody+Stampede+Park%2C+519+W+Yellowstone+Ave%2C+Cody%2C+WY+82414">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://www.codystampederodeo.com/">Website</a>
+        </div></td>
+      </tr>
+      <tr id="irma-hotel">
+        <td><div class="place-name">Buffalo Bill's Irma Hotel</div><div class="place-addr">1192 Sheridan Ave, Cody, WY 82414</div></td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Irma+Hotel%2C+1192+Sheridan+Ave%2C+Cody%2C+WY+82414">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://www.irmahotel.com/">Website</a>
+        </div></td>
+      </tr>
+      <tr id="old-trail-town">
+        <td><div class="place-name">Old Trail Town</div><div class="place-addr">1831 Demaris Dr, Cody, WY 82414</div></td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Old+Trail+Town%2C+1831+Demaris+Dr%2C+Cody%2C+WY+82414">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://oldtrailtown.org/">Website</a>
+        </div></td>
+      </tr>
+      <tr id="buffalo-bill-dam">
+        <td><div class="place-name">Buffalo Bill Dam &amp; Visitor Center</div><div class="place-addr">4808 N Fork Hwy, Cody, WY 82414</div></td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Buffalo+Bill+Dam+%26+Visitor+Center%2C+4808+N+Fork+Hwy%2C+Cody%2C+WY+82414">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://bbdvc.com/">Website</a>
+        </div></td>
+      </tr>
+      <tr id="heart-mountain">
+        <td><div class="place-name">Heart Mountain Interpretive Center</div><div class="place-addr">1539 Rd 19, Powell, WY 82435</div></td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Heart+Mountain+Interpretive+Center%2C+1539+Rd+19%2C+Powell%2C+WY+82435">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://www.heartmountain.org/">Website</a>
+        </div></td>
+      </tr>
+      <tr id="cattle-company">
+        <td><div class="place-name">The Cody Cattle Company</div><div class="place-addr">1910 Demaris Dr, Cody, WY 82414</div></td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=The+Cody+Cattle+Company%2C+1910+Demaris+Dr%2C+Cody%2C+WY+82414">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://thecodycattlecompany.com/">Website</a>
+        </div></td>
+      </tr>
+      <tr id="river-trips">
+        <td><div class="place-name">Wyoming River Trips (Shoshone River float)</div><div class="place-addr">Cody, WY &mdash; office location on booking</div></td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Wyoming+River+Trips%2C+Cody%2C+WY">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://wyomingrivertrips.com/">Website</a>
+        </div></td>
+      </tr>
+      <tr id="east-entrance">
+        <td><div class="place-name">Yellowstone East Entrance</div><div class="place-addr">~52 miles / ~1 hr from Cody via US-14/16/20</div></td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Yellowstone+East+Entrance">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://www.nps.gov/yell/planyourvisit/east.htm">Website</a>
+        </div></td>
+      </tr>
+      <tr id="old-faithful">
+        <td><div class="place-name">Old Faithful</div><div class="place-addr">Yellowstone National Park, WY 82190</div></td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Old+Faithful%2C+Yellowstone+National+Park%2C+WY">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://www.nps.gov/yell/planyourvisit/oldfaithful.htm">Website</a>
+        </div></td>
+      </tr>
+      <tr id="grand-prismatic">
+        <td><div class="place-name">Grand Prismatic Spring</div><div class="place-addr">Midway Geyser Basin, Yellowstone National Park, WY</div></td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Grand+Prismatic+Spring+Yellowstone">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://www.nps.gov/yell/planyourvisit/mgb.htm">Website</a>
+        </div></td>
+      </tr>
+      <tr id="artist-point">
+        <td><div class="place-name">Artist Point</div><div class="place-addr">Yellowstone National Park, WY 82190</div></td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Artist+Point+Yellowstone">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://www.nps.gov/yell/planyourvisit/grandcanyon.htm">Website</a>
+        </div></td>
+      </tr>
+      <tr id="yellowstone-lake">
+        <td><div class="place-name">Yellowstone Lake / West Thumb Geyser Basin</div><div class="place-addr">Yellowstone National Park, WY</div></td>
+        <td><div class="links">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=West+Thumb+Geyser+Basin+Yellowstone">Directions</a>
+          <a class="btn rust" target="_blank" rel="noopener" href="https://www.nps.gov/yell/planyourvisit/westthumb.htm">Website</a>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div class="place-name">Cody Yellowstone Visitor Bureau</div><div class="place-addr">General trip planning &amp; current event schedules</div></td>
+        <td><div class="links">
+          <a class="btn rust" target="_blank" rel="noopener" href="https://www.codyyellowstone.org/">Website</a>
+        </div></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+</div>
+
+<footer>
+  McDonald + Smith Summer Summit &mdash; Cody, Wyoming, July 20&ndash;24, 2026<br>
+  Save this and pull it up offline anytime, or throw it on Google Drive/Dropbox to share with everyone.
+</footer>
+
+</body>
+</html>
